@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghost Logic Daily Scan — Pre-Market Intelligence, Every Morning</title>
+  <meta name="description" content="Get a professional pre-market stock scan delivered every morning before the bell. Real setups. Real data. Built by the same AI that trades our own account.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── SCANNER PAGE EXTRAS ── */
+
+    /* HERO FORM */
+    .hero-form {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      max-width: 480px;
+    }
+
+    .hero-form input[type="email"] {
+      flex: 1;
+      min-width: 220px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(44,182,255,0.25);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      color: var(--light);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .hero-form input[type="email"]::placeholder {
+      color: var(--text-dim);
+    }
+
+    .hero-form input[type="email"]:focus {
+      border-color: var(--blue);
+    }
+
+    .hero-form button {
+      background: var(--blue);
+      color: var(--navy);
+      border: none;
+      border-radius: 8px;
+      padding: 0.85rem 1.5rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .hero-form button:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 0.6rem;
+    }
+
+    /* TERMINAL PREVIEW */
+    .terminal-wrap {
+      background: #080f1e;
+      border: 1px solid rgba(44,182,255,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .terminal-topbar {
+      background: #0d1829;
+      border-bottom: 1px solid rgba(44,182,255,0.12);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal-dots span {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .dot-red   { background: #ff5f57; }
+    .dot-amber { background: #febc2e; }
+    .dot-green { background: #28c840; }
+
+    .terminal-title {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .terminal-timestamp {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: #4a5d7a;
+    }
+
+    .terminal-body {
+      padding: 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .t-header-line {
+      color: var(--blue);
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      font-size: 0.72rem;
+      border-bottom: 1px solid rgba(44,182,255,0.15);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .t-row {
+      display: grid;
+      grid-template-columns: 62px 48px 70px 55px 110px 72px 72px 72px 1fr;
+      gap: 0;
+      padding: 0.2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .t-row:hover {
+      background: rgba(44,182,255,0.04);
+    }
+
+    .t-col {
+      padding-right: 1rem;
+      color: #c8d8f0;
+    }
+
+    .t-ticker {
+      color: var(--light);
+      font-weight: bold;
+    }
+
+    .t-score-high { color: #28c840; font-weight: bold; }
+    .t-score-mid  { color: #febc2e; font-weight: bold; }
+    .t-score-low  { color: #ff5f57; font-weight: bold; }
+
+    .t-gap-pos { color: #28c840; }
+    .t-gap-neg { color: #ff5f57; }
+
+    .t-rvol-hot { color: #2CB6FF; }
+    .t-rvol-norm { color: #8896B3; }
+
+    .t-sector {
+      color: #8896B3;
+      font-size: 0.72rem;
+    }
+
+    .t-signal {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .sig-breakout  { background: rgba(40,200,64,0.15);  color: #28c840; border: 1px solid rgba(40,200,64,0.3); }
+    .sig-momentum  { background: rgba(44,182,255,0.12); color: #2CB6FF; border: 1px solid rgba(44,182,255,0.3); }
+    .sig-reversal  { background: rgba(254,188,46,0.12); color: #febc2e; border: 1px solid rgba(254,188,46,0.3); }
+    .sig-gap-fill  { background: rgba(255,95,87,0.12);  color: #ff7b75; border: 1px solid rgba(255,95,87,0.3); }
+    .sig-catalyst  { background: rgba(226,106,44,0.12); color: #e2a26c; border: 1px solid rgba(226,106,44,0.3); }
+
+    .terminal-footer-line {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(44,182,255,0.1);
+      font-size: 0.72rem;
+      color: #4a5d7a;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .terminal-footer-line span { color: var(--blue); }
+
+    /* WHAT'S INSIDE */
+    .inside-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .inside-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      padding: 1.1rem 1.25rem;
+      background: var(--card-bg);
+      border: 1px solid rgba(44,182,255,0.08);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .inside-item:hover {
+      border-color: rgba(44,182,255,0.25);
+    }
+
+    .inside-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--blue);
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .inside-item h4 {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .inside-item p {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* PRICING TABLE */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 760px;
+      margin: 3rem auto 0;
+    }
+
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(44,182,255,0.1);
+      border-radius: 14px;
+      padding: 2rem;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(44,182,255,0.5);
+      background: linear-gradient(160deg, rgba(44,182,255,0.06) 0%, var(--card-bg) 60%);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue);
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .pricing-tier {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-price {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 2.4rem;
+      color: var(--blue);
+      line-height: 1;
+      margin: 1rem 0 0.25rem;
+    }
+
+    .pricing-price sub {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+
+    .pricing-price .per {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+    }
+
+    .pricing-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features li {
+      font-size: 0.87rem;
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .pricing-features li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .pricing-features li.dim {
+      color: var(--text-dim);
+    }
+
+    .pricing-features li.dim::before {
+      background: #2a3a56;
+    }
+
+    .pricing-cta {
+      display: block;
+      text-align: center;
+      padding: 0.85rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .pricing-cta-primary {
+      background: var(--blue);
+      color: var(--navy);
+    }
+
+    .pricing-cta-secondary {
+      background: transparent;
+      color: var(--light);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .pricing-cta:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    /* SOCIAL PROOF */
+    .proof-strip {
+      background: linear-gradient(135deg, rgba(44,182,255,0.06) 0%, rgba(22,35,64,0.8) 100%);
+      border-top: 1px solid rgba(44,182,255,0.1);
+      border-bottom: 1px solid rgba(44,182,255,0.1);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .proof-strip blockquote {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 700;
+      color: var(--light);
+      max-width: 700px;
+      margin: 0 auto 1rem;
+      line-height: 1.4;
+    }
+
+    .proof-strip blockquote em {
+      color: var(--blue);
+      font-style: normal;
+    }
+
+    .proof-meta {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    .proof-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .proof-stat-item {
+      text-align: center;
+    }
+
+    .proof-stat-item .psi-num {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--blue);
+    }
+
+    .proof-stat-item .psi-label {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 0.2rem;
+    }
+
+    /* BOTTOM SIGNUP */
+    .signup-section {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: radial-gradient(ellipse at 50% 100%, rgba(44,182,255,0.07) 0%, transparent 60%);
+    }
+
+    .signup-form-wrap {
+      max-width: 480px;
+      margin: 2rem auto 0;
+    }
+
+    .signup-form-wrap form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .signup-form-wrap input[type="email"],
+    .signup-form-wrap input[type="text"] {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(44,182,255,0.2);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      color: var(--light);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .signup-form-wrap input:focus {
+      border-color: var(--blue);
+    }
+
+    .signup-form-wrap input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .signup-form-wrap button {
+      background: var(--blue);
+      color: var(--navy);
+      border: none;
+      border-radius: 8px;
+      padding: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      width: 100%;
+    }
+
+    .signup-form-wrap button:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .signup-disclaimer {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .inside-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .t-row {
+        grid-template-columns: 55px 40px 60px 50px 90px 60px 60px 60px 1fr;
+        font-size: 0.72rem;
+      }
+      .terminal-body { padding: 1rem 0.75rem; font-size: 0.72rem; }
+    }
+
+    @media (max-width: 560px) {
+      .t-row { grid-template-columns: 50px 38px 58px 46px 1fr; }
+      .t-col.hide-sm { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Ghost <span>Logic</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="scanner.html" class="active">Daily Scan</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Pre-Market Intelligence &bull; Delivered Daily</div>
+    <h1>Your edge starts before<br><span>the market opens</span></h1>
+    <p>The Ghost Logic Daily Scan delivers a professional pre-market report every morning before the bell — real setups, real data, and clear entry/stop/target levels. No noise. Just trades.</p>
+
+    <form class="hero-form" action="#signup" method="get">
+      <input type="email" name="email" placeholder="Enter your email address" required>
+      <button type="submit">Get Free Scan</button>
+    </form>
+    <p class="form-note">Free tier available. No credit card required. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+
+<!-- ── SAMPLE REPORT PREVIEW ── -->
+<section id="preview">
+  <div class="container">
+    <div class="section-label">Sample Report</div>
+    <h2 class="section-title">What lands in your inbox at 8:45 AM</h2>
+    <p class="section-sub">This is what a real Ghost Logic Daily Scan looks like. Every morning, before the bell, PRO subscribers receive this — with live data.</p>
+
+    <div class="terminal-wrap">
+      <div class="terminal-topbar">
+        <div class="terminal-dots">
+          <span class="dot-red"></span>
+          <span class="dot-amber"></span>
+          <span class="dot-green"></span>
+        </div>
+        <span class="terminal-title">GHOST LOGIC DAILY SCAN &mdash; PRO REPORT</span>
+        <span class="terminal-timestamp">MON 2026-04-20 &bull; 08:45 ET</span>
+      </div>
+
+      <div class="terminal-body">
+
+        <div class="t-header-line">
+          === GHOST LOGIC LLC // DAILY PRE-MARKET SCAN // BUILD 2.4.1 ===
+        </div>
+        <div style="color:#4a5d7a; font-size:0.72rem; margin-bottom:1rem;">
+          Symbols scanned: 847 &nbsp;|&nbsp; Qualified setups: 6 &nbsp;|&nbsp;
+          Market open: 09:30 ET &nbsp;|&nbsp; VIX: 18.4 &nbsp;|&nbsp; SPY pre: +0.31%
+        </div>
+
+        <!-- TABLE HEADER -->
+        <div class="t-row" style="color:#2CB6FF; font-size:0.7rem; font-weight:bold; border-bottom:1px solid rgba(44,182,255,0.2); padding-bottom:0.4rem;">
+          <span class="t-col">TICKER</span>
+          <span class="t-col">SCORE</span>
+          <span class="t-col">GAP %</span>
+          <span class="t-col">RVOL</span>
+          <span class="t-col hide-sm">SECTOR</span>
+          <span class="t-col hide-sm">ENTRY</span>
+          <span class="t-col hide-sm">STOP</span>
+          <span class="t-col hide-sm">TARGET</span>
+          <span class="t-col">SIGNAL</span>
+        </div>
+
+        <!-- ROW 1 -->
+        <div class="t-row">
+          <span class="t-col t-ticker">NVDA</span>
+          <span class="t-col t-score-high">9.2</span>
+          <span class="t-col t-gap-pos">+3.84%</span>
+          <span class="t-col t-rvol-hot">4.1x</span>
+          <span class="t-col t-sector hide-sm">Semiconductors</span>
+          <span class="t-col hide-sm">$872.50</span>
+          <span class="t-col t-gap-neg hide-sm">$858.00</span>
+          <span class="t-col t-gap-pos hide-sm">$912.00</span>
+          <span class="t-col"><span class="t-signal sig-breakout">BREAKOUT</span></span>
+        </div>
+
+        <!-- ROW 2 -->
+        <div class="t-row">
+          <span class="t-col t-ticker">PLTR</span>
+          <span class="t-col t-score-high">8.7</span>
+          <span class="t-col t-gap-pos">+2.61%</span>
+          <span class="t-col t-rvol-hot">3.3x</span>
+          <span class="t-col t-sector hide-sm">Defense / AI</span>
+          <span class="t-col hide-sm">$24.80</span>
+          <span class="t-col t-gap-neg hide-sm">$23.95</span>
+          <span class="t-col t-gap-pos hide-sm">$27.50</span>
+          <span class="t-col"><span class="t-signal sig-momentum">MOMENTUM</span></span>
+        </div>
+
+        <!-- ROW 3 -->
+        <div class="t-row">
+          <span class="t-col t-ticker">HOOD</span>
+          <span class="t-col t-score-high">8.1</span>
+          <span class="t-col t-gap-pos">+4.22%</span>
+          <span class="t-col t-rvol-hot">5.8x</span>
+          <span class="t-col t-sector hide-sm">Fintech</span>
+          <span class="t-col hide-sm">$91.40</span>
+          <span class="t-col t-gap-neg hide-sm">$88.50</span>
+          <span class="t-col t-gap-pos hide-sm">$99.00</span>
+          <span class="t-col"><span class="t-signal sig-catalyst">CATALYST</span></span>
+        </div>
+
+        <!-- ROW 4 -->
+        <div class="t-row">
+          <span class="t-col t-ticker">SOUN</span>
+          <span class="t-col t-score-mid">7.4</span>
+          <span class="t-col t-gap-pos">+1.93%</span>
+          <span class="t-col t-rvol-norm">2.1x</span>
+          <span class="t-col t-sector hide-sm">AI / Voice</span>
+          <span class="t-col hide-sm">$8.65</span>
+          <span class="t-col t-gap-neg hide-sm">$8.20</span>
+          <span class="t-col t-gap-pos hide-sm">$10.10</span>
+          <span class="t-col"><span class="t-signal sig-momentum">MOMENTUM</span></span>
+        </div>
+
+        <!-- ROW 5 -->
+        <div class="t-row">
+          <span class="t-col t-ticker">GUSH</span>
+          <span class="t-col t-score-mid">7.0</span>
+          <span class="t-col t-gap-neg">-1.47%</span>
+          <span class="t-col t-rvol-norm">1.8x</span>
+          <span class="t-col t-sector hide-sm">Energy / Leveraged</span>
+          <span class="t-col hide-sm">$22.10</span>
+          <span class="t-col t-gap-neg hide-sm">$21.40</span>
+          <span class="t-col t-gap-pos hide-sm">$24.80</span>
+          <span class="t-col"><span class="t-signal sig-reversal">REVERSAL</span></span>
+        </div>
+
+        <!-- ROW 6 -->
+        <div class="t-row">
+          <span class="t-col t-ticker">COIN</span>
+          <span class="t-col t-score-mid">6.8</span>
+          <span class="t-col t-gap-neg">-2.10%</span>
+          <span class="t-col t-rvol-norm">2.4x</span>
+          <span class="t-col t-sector hide-sm">Crypto / Fintech</span>
+          <span class="t-col hide-sm">$196.50</span>
+          <span class="t-col t-gap-neg hide-sm">$191.00</span>
+          <span class="t-col t-gap-pos hide-sm">$208.00</span>
+          <span class="t-col"><span class="t-signal sig-gap-fill">GAP FILL</span></span>
+        </div>
+
+        <div class="terminal-footer-line">
+          <span>Sector Leaders: <span>Defense (+1.8%)</span> | <span>AI (+1.4%)</span> | <span>Fintech (+0.9%)</span></span>
+          <span style="color:#4a5d7a;">Lagging: Energy (-0.6%) | Biotech (-1.1%)</span>
+          <span style="color:#4a5d7a;">Next: Earnings alerts active &bull; NVDA reports Tue after close</span>
+        </div>
+
+      </div>
+    </div>
+
+    <p style="text-align:center; color:var(--text-dim); font-size:0.8rem; margin-top:1.25rem;">
+      Sample data shown. Live report uses real pre-market prices and volume from 8:30 AM ET onward.
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+
+<!-- ── WHAT'S INSIDE ── -->
+<section>
+  <div class="container">
+    <div class="section-label">What You Get</div>
+    <h2 class="section-title">Built to give you an edge</h2>
+    <p class="section-sub">Every field in the report means something. No filler, no padding — just the data that moves trades.</p>
+
+    <div class="inside-grid">
+      <div class="inside-item">
+        <div class="inside-dot"></div>
+        <div>
+          <h4>Scan Score (1-10)</h4>
+          <p>Proprietary composite score weighing gap magnitude, relative volume, sector momentum, and signal quality. 7+ is worth watching. 8+ is a setup.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-dot"></div>
+        <div>
+          <h4>Gap % with Direction</h4>
+          <p>Pre-market gap size relative to prior close. Green for gap-up, red for gap-down. Includes context on whether the gap is supported by volume.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-dot"></div>
+        <div>
+          <h4>Relative Volume (RVOL)</h4>
+          <p>Current pre-market volume versus 20-day average for the same time window. RVOL above 2x means real participation. 4x+ is high-conviction.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-dot"></div>
+        <div>
+          <h4>Entry / Stop / Target</h4>
+          <p>Exact levels derived from pre-market structure and prior-day key zones. Not guesses — levels that respect the chart. Risk-defined before the open.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-dot"></div>
+        <div>
+          <h4>Sector Momentum</h4>
+          <p>Which sectors are leading and lagging pre-market. Knowing sector tailwinds before entry dramatically improves trade conviction and accuracy.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-dot"></div>
+        <div>
+          <h4>Signal Classification</h4>
+          <p>Every setup is typed: Breakout, Momentum, Reversal, Gap Fill, or Catalyst. Helps you instantly know the trade thesis without reading paragraphs.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-dot"></div>
+        <div>
+          <h4>Earnings &amp; Catalyst Flags</h4>
+          <p>Upcoming earnings, FDA dates, and high-impact macro events flagged directly in the report. Never get caught in an unplanned earnings move again.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-dot"></div>
+        <div>
+          <h4>Real-Time Telegram Alerts (PRO)</h4>
+          <p>PRO subscribers receive instant Telegram alerts when a setup reaches its entry trigger during the session — no screen-watching required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+
+<!-- ── FREE vs PRO PRICING ── -->
+<section id="pricing">
+  <div class="container" style="text-align:center;">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Start free. Upgrade when you're ready.</h2>
+    <p class="section-sub" style="margin-left:auto; margin-right:auto;">The free scan gives you a feel for the data. PRO gives you everything you need to act on it.</p>
+
+    <div class="pricing-grid">
+
+      <!-- FREE TIER -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-price">$0<span class="per"> / month</span></div>
+        <p class="pricing-desc">Basic daily scan. No credit card. No commitment. See what the market is doing every morning.</p>
+        <ul class="pricing-features">
+          <li>Daily watchlist scan (25 symbols)</li>
+          <li>Top 3 setups ranked by score</li>
+          <li>Gap % and RVOL data</li>
+          <li>Delivered 1 hour after market open</li>
+          <li class="dim">Entry / Stop / Target levels</li>
+          <li class="dim">Full sector momentum report</li>
+          <li class="dim">Real-time Telegram alerts</li>
+          <li class="dim">Catalyst and earnings flags</li>
+          <li class="dim">Full scan (847 symbols)</li>
+        </ul>
+        <a href="#signup" class="pricing-cta pricing-cta-secondary">Get Free Access</a>
+      </div>
+
+      <!-- PRO TIER -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-price">$19<span class="per"> / month</span></div>
+        <p class="pricing-desc">The full report, delivered before the open, with everything you need to trade with confidence.</p>
+        <ul class="pricing-features">
+          <li>Full scan (847 symbols daily)</li>
+          <li>All setups ranked by score</li>
+          <li>Gap %, RVOL, sector data</li>
+          <li>Delivered at 8:45 AM ET daily</li>
+          <li>Exact entry / stop / target levels</li>
+          <li>Full sector momentum breakdown</li>
+          <li>Real-time Telegram entry alerts</li>
+          <li>Catalyst and earnings flags</li>
+          <li>Signal classification per setup</li>
+        </ul>
+        <a href="#signup" class="pricing-cta pricing-cta-primary">Start PRO - $19/mo</a>
+      </div>
+
+    </div>
+
+    <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--text-dim);">
+      Cancel anytime. No contracts. Billed monthly via Stripe.
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+
+<!-- ── SOCIAL PROOF ── -->
+<div class="proof-strip">
+  <blockquote>
+    "Built by the same AI that <em>trades our own account</em> every single day."
+  </blockquote>
+  <p class="proof-meta">Ghost Logic LLC &bull; Hope Mills, NC &bull; Veteran-Owned</p>
+
+  <div class="proof-stats">
+    <div class="proof-stat-item">
+      <div class="psi-num">847</div>
+      <div class="psi-label">Symbols Scanned Daily</div>
+    </div>
+    <div class="proof-stat-item">
+      <div class="psi-num">8:45 AM</div>
+      <div class="psi-label">PRO Report Delivery</div>
+    </div>
+    <div class="proof-stat-item">
+      <div class="psi-num">100%</div>
+      <div class="psi-label">Automated. No Human Bias.</div>
+    </div>
+    <div class="proof-stat-item">
+      <div class="psi-num">$0</div>
+      <div class="psi-label">To Start Today</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── BOTTOM SIGNUP ── -->
+<section class="signup-section" id="signup">
+  <div class="container">
+    <div class="section-label">Get the Scan</div>
+    <h2 class="section-title">Your morning edge, delivered.</h2>
+    <p style="color:var(--text-dim); font-size:1.05rem; max-width:500px; margin:0 auto;">
+      Join traders who start every session with a clear plan. Free tier included. PRO available at checkout.
+    </p>
+
+    <div class="signup-form-wrap">
+      <form action="#" method="post">
+        <input type="text" name="name" placeholder="Your first name" required>
+        <input type="email" name="email" placeholder="Your email address" required>
+        <button type="submit">Get the Daily Scan - Free</button>
+      </form>
+      <p class="signup-disclaimer">
+        By subscribing you agree to receive the Ghost Logic Daily Scan by email.
+        Unsubscribe at any time. We do not sell or share your information.
+        This is not financial advice. All scan data is for informational purposes only.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="container">
+    <span class="footer-logo">Ghost <span>Logic</span> LLC</span>
+    <p>Hope Mills, NC &bull; Veteran-Owned &bull; <a href="tel:9108490414">(910) 849-0414</a> &bull; <a href="mailto:theteam@ghostlogic.us">theteam@ghostlogic.us</a></p>
+    <p style="margin-top:0.75rem; font-size:0.75rem;">&copy; 2026 Ghost Logic LLC. All rights reserved. &bull; Scan reports are for informational purposes only. Not financial advice.</p>
+  </div>
+</footer>
+
+</body>
+</html>
