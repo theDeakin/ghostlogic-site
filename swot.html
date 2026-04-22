@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SWOT Analysis -- Ghost Logic LLC</title>
-<meta name="description" content="A thorough, research-backed SWOT analysis for your business. Dynamic interview, competitor intelligence, quick wins. $150. Delivered in 48 hours.">
+<meta name="description" content="Research-backed SWOT analysis for your business. Three tiers starting at $29. Dynamic interview, competitor intelligence, quick wins. Veteran-owned.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Chakra+Petch:wght@300;400;600;700&display=swap');
 
@@ -73,7 +73,7 @@ nav {
 .hero {
   max-width: 800px;
   width: 100%;
-  padding: 80px 40px 60px;
+  padding: 72px 40px 48px;
   text-align: center;
 }
 
@@ -99,53 +99,21 @@ nav {
   width: 200px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent2), var(--accent), transparent);
-  margin: 12px auto;
+  margin: 12px auto 20px;
   opacity: 0.6;
 }
 
-.hero-price {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 42px;
-  color: var(--accent);
-  margin-bottom: 4px;
-}
-
-.hero-delivery {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  color: var(--mid);
-  text-transform: uppercase;
-  margin-bottom: 32px;
-}
-
 .hero-desc {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   color: var(--mid);
   line-height: 1.8;
-  max-width: 600px;
-  margin: 0 auto 40px;
+  max-width: 580px;
+  margin: 0 auto;
 }
 
-.btn-primary {
-  display: inline-block;
-  background: var(--accent);
-  color: var(--bg);
-  font-family: 'Chakra Petch', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 16px 40px;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-
-.btn-primary:hover { background: #00b8e0; }
-
-/* WHAT YOU GET */
-.section {
+/* PRICING TIERS */
+.pricing-section {
   width: 100%;
   max-width: 1100px;
   padding: 60px 40px;
@@ -165,58 +133,239 @@ nav {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 40px;
+  margin-bottom: 8px;
 }
 
-.deliverables {
+.section-sub {
+  font-size: 13px;
+  color: var(--mid);
+  font-weight: 300;
+  margin-bottom: 48px;
+}
+
+.tiers {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  margin-bottom: 60px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
 }
 
-.deliverable {
+.tier-card {
   background: #0b0e15;
   border: 1px solid var(--dim);
-  padding: 28px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: border-color 0.2s;
+  position: relative;
 }
 
-.deliverable-num {
+.tier-card:hover { border-color: var(--accent); }
+
+.tier-card.featured {
+  border-color: var(--accent);
+}
+
+.featured-badge {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--bg);
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  color: var(--accent);
+  font-size: 9px;
   letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  white-space: nowrap;
+}
+
+.tier-num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: var(--mid);
+  text-transform: uppercase;
   margin-bottom: 12px;
 }
 
-.deliverable-name {
-  font-size: 16px;
+.tier-name {
+  font-size: 22px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
-.deliverable-desc {
+.tier-tagline {
   font-size: 12px;
   color: var(--mid);
-  line-height: 1.7;
   font-weight: 300;
+  margin-bottom: 24px;
+  line-height: 1.5;
 }
 
+.tier-price {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 40px;
+  color: var(--ghost);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.tier-card.featured .tier-price { color: var(--accent); }
+
+.tier-delivery {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--mid);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--dim);
+}
+
+.tier-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex: 1;
+}
+
+.tier-features li {
+  font-size: 12px;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.5;
+  padding-left: 16px;
+  position: relative;
+}
+
+.tier-features li::before {
+  content: '--';
+  position: absolute;
+  left: 0;
+  color: var(--dim);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.tier-features li.included {
+  color: var(--ghost);
+}
+
+.tier-features li.included::before {
+  content: '+';
+  color: var(--accent);
+}
+
+.btn-tier {
+  display: block;
+  text-align: center;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: all 0.2s;
+  margin-top: auto;
+}
+
+.btn-tier-outline {
+  border: 1px solid var(--dim);
+  color: var(--ghost);
+}
+
+.btn-tier-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-tier-filled {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-tier-filled:hover { background: #00b8e0; }
+
+/* COMPARISON TABLE */
+.compare-section {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 40px 80px;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.compare-table th {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mid);
+  padding: 12px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--dim);
+}
+
+.compare-table th:first-child { text-align: left; }
+
+.compare-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--dim);
+  color: var(--mid);
+  font-weight: 300;
+  text-align: center;
+}
+
+.compare-table td:first-child {
+  text-align: left;
+  color: var(--ghost);
+  font-weight: 400;
+}
+
+.compare-table tr:last-child td { border-bottom: none; }
+
+.check { color: var(--accent); font-size: 14px; }
+.dash { color: var(--dim); }
+.partial { color: var(--mid); font-size: 11px; }
+
 /* HOW IT WORKS */
+.how-section {
+  width: 100%;
+  background: #0b0e15;
+  border-top: 1px solid var(--dim);
+  border-bottom: 1px solid var(--dim);
+}
+
+.how-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 72px 40px;
+}
+
 .steps {
   display: flex;
   flex-direction: column;
   gap: 0;
-  max-width: 700px;
+  margin-top: 40px;
 }
 
 .step {
   display: flex;
   gap: 32px;
   align-items: flex-start;
-  padding: 28px 0;
+  padding: 24px 0;
   border-bottom: 1px solid var(--dim);
 }
 
@@ -224,55 +373,25 @@ nav {
 
 .step-num {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 28px;
+  font-size: 24px;
   color: var(--dim);
-  min-width: 48px;
-  line-height: 1;
+  min-width: 44px;
+  line-height: 1.2;
 }
 
 .step-content h3 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .step-content p {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--mid);
   line-height: 1.7;
   font-weight: 300;
-}
-
-/* CTA BLOCK */
-.cta-block {
-  width: 100%;
-  background: #0b0e15;
-  border-top: 1px solid var(--dim);
-  border-bottom: 1px solid var(--dim);
-}
-
-.cta-inner {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 80px 40px;
-  text-align: center;
-}
-
-.cta-inner h2 {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.cta-inner p {
-  font-size: 14px;
-  color: var(--mid);
-  line-height: 1.7;
-  margin-bottom: 32px;
 }
 
 footer {
@@ -281,7 +400,7 @@ footer {
   padding: 32px 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   max-width: 1100px;
 }
 
@@ -292,12 +411,11 @@ footer {
   letter-spacing: 0.2em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .tiers { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
   .hero-title { font-size: 36px; }
-  .hero-price { font-size: 32px; }
   nav { padding: 20px 24px; }
-  .section { padding: 40px 24px; }
-  footer { flex-direction: column; gap: 12px; text-align: center; }
+  .pricing-section, .compare-section { padding: 40px 24px; }
 }
 </style>
 </head>
@@ -316,109 +434,203 @@ footer {
     </svg>
     <span class="nav-name">GHOST <span>LOGIC</span></span>
   </a>
-  <a class="back-link" href="/">-- Back to Home</a>
+  <a class="back-link" href="/">&larr; Home</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="service-tag">// Service 01 -- Analysis</div>
+  <div class="service-tag">// Service 01 &mdash; Analysis</div>
   <h1 class="hero-title">SWOT Analysis</h1>
   <div class="hero-rule"></div>
-  <div class="hero-price">$150</div>
-  <div class="hero-delivery">Full report delivered within 48 hours</div>
-  <p class="hero-desc">A thorough, research-backed SWOT analysis for your business. Not a template. Not a chatbot printout. A real deliverable backed by a live interview and actual market research.</p>
-  <a href="https://buy.stripe.com/ghostlogic-swot" class="btn-primary">Get Started -- $150</a>
+  <p class="hero-desc">Not a template. Not a chatbot printout. A real SWOT backed by a live interview and actual market research. Three tiers so you get exactly what you need.</p>
 </section>
 
-<!-- WHAT YOU GET -->
-<section class="section">
-  <div class="section-label">// What You Get</div>
-  <h2 class="section-title">The Deliverable</h2>
+<!-- PRICING TIERS -->
+<section class="pricing-section">
+  <div class="section-label">// Choose Your Tier</div>
+  <h2 class="section-title">Pricing</h2>
+  <p class="section-sub">Start where you are. Upgrade when you're ready.</p>
 
-  <div class="deliverables">
-    <div class="deliverable">
-      <div class="deliverable-num">01</div>
-      <div class="deliverable-name">Dynamic Interview</div>
-      <p class="deliverable-desc">A conversational intake that adapts to your business type. Not a form. Questions that actually surface what matters.</p>
+  <div class="tiers">
+
+    <!-- TIER 1 -->
+    <div class="tier-card">
+      <div class="tier-num">// Tier 01</div>
+      <div class="tier-name">Quick Scan</div>
+      <div class="tier-tagline">For early-stage ideas and businesses just getting started.</div>
+      <div class="tier-price">$29</div>
+      <div class="tier-delivery">Same-day delivery</div>
+      <ul class="tier-features">
+        <li class="included">Short intake (5-7 questions)</li>
+        <li class="included">Basic SWOT grid with key bullets</li>
+        <li class="included">Top 2 strategic recommendations</li>
+        <li class="included">1 quick win this week</li>
+        <li>No external research</li>
+        <li>No competitor intel</li>
+        <li>No confidence scoring</li>
+        <li>No 90-day check-in</li>
+      </ul>
+      <a href="https://buy.stripe.com/ghostlogic-swot-basic" class="btn-tier btn-tier-outline">Get Quick Scan &mdash; $29</a>
     </div>
-    <div class="deliverable">
-      <div class="deliverable-num">02</div>
-      <div class="deliverable-name">Market Research</div>
-      <p class="deliverable-desc">We research your industry, competitors, and market trends using live data. Not assumptions.</p>
+
+    <!-- TIER 2 (FEATURED) -->
+    <div class="tier-card featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="tier-num">// Tier 02</div>
+      <div class="tier-name">Deep Dive</div>
+      <div class="tier-tagline">For small business owners ready to make a real move.</div>
+      <div class="tier-price">$97</div>
+      <div class="tier-delivery">Delivered within 48 hours</div>
+      <ul class="tier-features">
+        <li class="included">Full dynamic interview (8-15 questions)</li>
+        <li class="included">Live market + industry research</li>
+        <li class="included">Full SWOT with confidence scoring</li>
+        <li class="included">1-2 competitor mentions</li>
+        <li class="included">Top 3 strategic recommendations</li>
+        <li class="included">3 quick wins this week</li>
+        <li>No full competitor profiles</li>
+        <li>No 90-day check-in</li>
+      </ul>
+      <a href="https://buy.stripe.com/ghostlogic-swot-pro" class="btn-tier btn-tier-filled">Get Deep Dive &mdash; $97</a>
     </div>
-    <div class="deliverable">
-      <div class="deliverable-num">03</div>
-      <div class="deliverable-name">Competitor Intelligence</div>
-      <p class="deliverable-desc">Mini-profile on each competitor: what they do well, where they're weak, and how you position against them.</p>
+
+    <!-- TIER 3 -->
+    <div class="tier-card">
+      <div class="tier-num">// Tier 03</div>
+      <div class="tier-name">Full Intelligence</div>
+      <div class="tier-tagline">For serious decisions. Investor prep. Pivots. Big bets.</div>
+      <div class="tier-price">$197</div>
+      <div class="tier-delivery">Delivered within 48 hours</div>
+      <ul class="tier-features">
+        <li class="included">Full dynamic interview (8-15 questions)</li>
+        <li class="included">Live market + industry research</li>
+        <li class="included">Full SWOT with confidence scoring</li>
+        <li class="included">Full competitor intelligence (3+ profiles)</li>
+        <li class="included">Market trend analysis</li>
+        <li class="included">Top 3 strategic recommendations</li>
+        <li class="included">3 quick wins this week</li>
+        <li class="included">90-day follow-up check-in included</li>
+      </ul>
+      <a href="https://buy.stripe.com/ghostlogic-swot-intel" class="btn-tier btn-tier-outline">Get Full Intelligence &mdash; $197</a>
     </div>
-    <div class="deliverable">
-      <div class="deliverable-num">04</div>
-      <div class="deliverable-name">Confidence Scoring</div>
-      <p class="deliverable-desc">Every finding is tagged High, Medium, or Low confidence. You know exactly what's proven vs. inferred.</p>
-    </div>
-    <div class="deliverable">
-      <div class="deliverable-num">05</div>
-      <div class="deliverable-name">Strategic Recommendations</div>
-      <p class="deliverable-desc">Top 3 actions based on your specific SWOT. No generic advice.</p>
-    </div>
-    <div class="deliverable">
-      <div class="deliverable-num">06</div>
-      <div class="deliverable-name">Quick Wins This Week</div>
-      <p class="deliverable-desc">3 things you can do in 7 days, under $100, that connect directly to your biggest opportunity.</p>
-    </div>
+
   </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-section">
+  <div class="section-label">// Feature Breakdown</div>
+  <h2 class="section-title">What's Included</h2>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Quick Scan<br>$29</th>
+        <th>Deep Dive<br>$97</th>
+        <th>Full Intelligence<br>$197</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dynamic intake interview</td>
+        <td><span class="partial">5-7 questions</span></td>
+        <td><span class="partial">8-15 questions</span></td>
+        <td><span class="partial">8-15 questions</span></td>
+      </tr>
+      <tr>
+        <td>Live market research</td>
+        <td><span class="dash">--</span></td>
+        <td><span class="check">+</span></td>
+        <td><span class="check">+</span></td>
+      </tr>
+      <tr>
+        <td>Full SWOT with explanations</td>
+        <td><span class="dash">--</span></td>
+        <td><span class="check">+</span></td>
+        <td><span class="check">+</span></td>
+      </tr>
+      <tr>
+        <td>Confidence scoring (High/Med/Low)</td>
+        <td><span class="dash">--</span></td>
+        <td><span class="check">+</span></td>
+        <td><span class="check">+</span></td>
+      </tr>
+      <tr>
+        <td>Competitor intelligence</td>
+        <td><span class="dash">--</span></td>
+        <td><span class="partial">1-2 mentions</span></td>
+        <td><span class="partial">3+ full profiles</span></td>
+      </tr>
+      <tr>
+        <td>Market trend analysis</td>
+        <td><span class="dash">--</span></td>
+        <td><span class="dash">--</span></td>
+        <td><span class="check">+</span></td>
+      </tr>
+      <tr>
+        <td>Strategic recommendations</td>
+        <td><span class="partial">Top 2</span></td>
+        <td><span class="partial">Top 3</span></td>
+        <td><span class="partial">Top 3</span></td>
+      </tr>
+      <tr>
+        <td>Quick wins this week</td>
+        <td><span class="partial">1</span></td>
+        <td><span class="partial">3</span></td>
+        <td><span class="partial">3</span></td>
+      </tr>
+      <tr>
+        <td>90-day follow-up check-in</td>
+        <td><span class="dash">--</span></td>
+        <td><span class="dash">--</span></td>
+        <td><span class="check">+</span></td>
+      </tr>
+      <tr>
+        <td>Delivery</td>
+        <td><span class="partial">Same day</span></td>
+        <td><span class="partial">48 hours</span></td>
+        <td><span class="partial">48 hours</span></td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="section" style="border-top: 1px solid var(--dim); padding-top: 60px;">
-  <div class="section-label">// Process</div>
-  <h2 class="section-title">How It Works</h2>
-
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-content">
-        <h3>You Pay, We Start</h3>
-        <p>Order below. Within 24 hours we reach out to schedule your intake interview. No forms to fill out first.</p>
+<div class="how-section">
+  <div class="how-inner">
+    <div class="section-label">// Process</div>
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>Pick Your Tier and Pay</h3>
+          <p>Choose the tier that fits where you are. Within 24 hours we reach out to schedule your intake.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>The Interview</h3>
+          <p>A conversation over Telegram, phone, or chat. Questions adapt based on what you tell us. You don't prepare anything.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>We Do the Work</h3>
+          <p>We pull market data, research competitors, and synthesize everything into your report. You wait.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h3>Report Delivered</h3>
+          <p>Professional formatted report. Specific to your business. Ready to use or share with your team.</p>
+        </div>
       </div>
     </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-content">
-        <h3>The Interview</h3>
-        <p>A 20-30 minute conversation -- over Telegram, phone, or chat. We ask smart questions. You answer honestly. The questions adapt based on what you tell us.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-content">
-        <h3>We Do the Research</h3>
-        <p>After the interview we pull market data, competitor profiles, and industry trends. You don't have to gather anything.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-content">
-        <h3>Report Delivered</h3>
-        <p>Within 48 hours of your interview, you receive a complete SWOT report. Professional format. Specific to your business. Ready to use.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">05</div>
-      <div class="step-content">
-        <h3>90-Day Check-In</h3>
-        <p>We follow up at 90 days. Did the opportunity we identified pan out? Do you need an update? No extra charge.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<div class="cta-block">
-  <div class="cta-inner">
-    <h2>Ready to See Your Business Clearly?</h2>
-    <p>$150. 48-hour turnaround. Research-backed. No templates. No generic advice. Just a clear picture of where you stand and where to go next.</p>
-    <a href="https://buy.stripe.com/ghostlogic-swot" class="btn-primary">Get Your SWOT Analysis -- $150</a>
   </div>
 </div>
 
