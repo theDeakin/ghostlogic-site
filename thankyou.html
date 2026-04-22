@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're In -- Ghost Logic LLC</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Chakra+Petch:wght@300;400;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080a0f;
+  --ghost: #e8edf5;
+  --accent: #00d4ff;
+  --accent2: #0066ff;
+  --dim: #2a3040;
+  --mid: #9aaec4;
+  --card: #0f1420;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ghost);
+  font-family: 'Chakra Petch', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.ghost-icon {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 28px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.accent { color: var(--accent); }
+
+.subtitle {
+  color: var(--mid);
+  font-size: 1rem;
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.steps {
+  background: var(--card);
+  border: 1px solid var(--dim);
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 480px;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 36px;
+}
+
+.steps h3 {
+  font-size: 0.8rem;
+  color: var(--mid);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.step:last-child { margin-bottom: 0; }
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ghost);
+}
+
+.step-text strong { color: var(--accent); }
+
+.home-link {
+  color: var(--mid);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--dim);
+  padding-bottom: 2px;
+}
+.home-link:hover { color: var(--ghost); border-color: var(--ghost); }
+
+.order-summary {
+  font-size: 0.82rem;
+  color: var(--mid);
+  margin-bottom: 28px;
+}
+.order-summary span { color: var(--ghost); }
+</style>
+</head>
+<body>
+
+<svg class="ghost-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 3C12.268 3 6 9.268 6 17v16l4-3 4 3 4-3 4 3 4-3 4 3V17C30 9.268 23.732 3 20 3z" fill="#00d4ff" opacity="0.2"/>
+  <path d="M20 3C12.268 3 6 9.268 6 17v16l4-3 4 3 4-3 4 3 4-3 4 3V17C30 9.268 23.732 3 20 3z" stroke="#00d4ff" stroke-width="1.5" fill="none"/>
+  <circle cx="15" cy="16" r="2.5" fill="#00d4ff"/>
+  <circle cx="25" cy="16" r="2.5" fill="#00d4ff"/>
+</svg>
+
+<h1>You're <span class="accent">in.</span></h1>
+<p class="subtitle">Payment confirmed. Check your inbox in the next few minutes for a full questionnaire from <strong>theteam@ghostlogic.us</strong>. Fill it out at your own pace — your analysis starts when it comes back.</p>
+
+<div class="order-summary" id="order-summary"></div>
+
+<div class="steps">
+  <h3>What Happens Next</h3>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-text">You'll receive an email from <strong>theteam@ghostlogic.us</strong> with a detailed intake questionnaire. Check spam if it doesn't show in 5 minutes.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-text">Fill it out at your own pace. The more detail you give us, the sharper your SWOT will be.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-text">We get to work. Your analysis is delivered to your inbox within the timeframe for your tier.</div>
+  </div>
+</div>
+
+<a class="home-link" href="/">Back to Ghost Logic</a>
+
+<script>
+// Read order from sessionStorage and display summary
+var order = null;
+try {
+  order = JSON.parse(sessionStorage.getItem('gl_order') || 'null');
+} catch(e) {}
+
+if (order) {
+  var el = document.getElementById('order-summary');
+  el.innerHTML = 'Order for <span>' + order.bizName + '</span> &bull; <span>' + order.tier + '</span> &bull; <span>$' + order.amount + '</span>';
+}
+</script>
+</body>
+</html>
