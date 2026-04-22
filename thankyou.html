@@ -139,7 +139,7 @@ h1 {
   <circle cx="25" cy="16" r="2.5" fill="#00d4ff"/>
 </svg>
 
-<h1>Thank you. <span class="accent">Seriously.</span></h1>
+<h1 id="greeting">Thank you. <span class="accent">Seriously.</span></h1>
 <p class="subtitle">You just made a smart investment in your business. We don't take that lightly. Check your inbox in the next few minutes — there's a questionnaire waiting from <strong>theteam@ghostlogic.us</strong>. Take your time with it. The more you give us, the more we give back.</p>
 
 <div class="order-summary" id="order-summary"></div>
@@ -170,6 +170,12 @@ try {
 } catch(e) {}
 
 if (order) {
+  // Personalize the heading with first name
+  var firstName = order.yourName ? order.yourName.split(' ')[0] : null;
+  if (firstName) {
+    document.getElementById('greeting').innerHTML = 'Thank you, <span class="accent">' + firstName + '.</span>';
+  }
+  // Order summary
   var el = document.getElementById('order-summary');
   el.innerHTML = 'Order for <span>' + order.bizName + '</span> &bull; <span>' + order.tier + '</span> &bull; <span>$' + order.amount + '</span>';
 }
