@@ -1,104 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="google-site-verification" content="r3h_MjZS3n-LAgkHq1RQ7MuhJ07G_Qa5Kz-SYkpijDU">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ghost Logic | Coming Soon</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="r3h_MjZS3n-LAgkHq1RQ7MuhJ07G_Qa5Kz-SYkpijDU">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghost Logic LLC -- AI-Powered Tools for Real People</title>
+<meta name="description" content="Ghost Logic LLC builds AI-powered automation tools for small businesses and everyday people. Veteran-owned. Hope Mills, NC.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Chakra+Petch:wght@300;400;600;700&display=swap');
 
-    body {
-      background-color: #0F1E3A;
-      color: #F5F7FB;
-      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .container {
-      max-width: 600px;
-    }
+:root {
+  --bg: #080a0f;
+  --ghost: #e8edf5;
+  --accent: #00d4ff;
+  --accent2: #0066ff;
+  --dim: #2a3040;
+  --mid: #5a6880;
+}
 
-    .logo-mark {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: #2CB6FF;
-      margin-bottom: 2rem;
-      opacity: 0.8;
-    }
+body {
+  background: var(--bg);
+  color: var(--ghost);
+  font-family: 'Chakra Petch', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
+/* NAV */
+nav {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 40px;
+  border-bottom: 1px solid var(--dim);
+}
 
-    h1 span {
-      color: #2CB6FF;
-    }
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
 
-    .tagline {
-      font-size: 1.1rem;
-      color: #a0aec0;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
+.nav-logo svg { width: 36px; height: 36px; }
 
-    .badge {
-      display: inline-block;
-      background: rgba(44, 182, 255, 0.1);
-      border: 1px solid rgba(44, 182, 255, 0.3);
-      color: #2CB6FF;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      margin-bottom: 2rem;
-    }
+.nav-name {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ghost);
+}
 
-    .divider {
-      width: 40px;
-      height: 2px;
-      background: #2CB6FF;
-      margin: 2rem auto;
-      opacity: 0.4;
-    }
+.nav-name span { color: var(--accent); }
 
-    .footer {
-      font-size: 0.8rem;
-      color: #4a5568;
-    }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
 
-    .footer a {
-      color: #2CB6FF;
-      text-decoration: none;
-    }
-  </style>
+.nav-links a {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+/* HERO */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 40px 60px;
+  max-width: 800px;
+}
+
+.logo-icon {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 24px;
+}
+
+.ghost-svg { width: 100%; height: 100%; overflow: visible; }
+
+.trace {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: drawTrace 1.4s ease 0.3s forwards;
+}
+
+@keyframes drawTrace {
+  to { stroke-dashoffset: 0; }
+}
+
+.scan-rect {
+  animation: scan 3.5s linear 1.6s infinite;
+  opacity: 0;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-60px); opacity: 0; }
+  10% { opacity: 0.25; }
+  90% { opacity: 0.25; }
+  100% { transform: translateY(120px); opacity: 0; }
+}
+
+.eye-left, .eye-right {
+  animation: blink 4s ease 2s infinite;
+  transform-origin: center;
+}
+
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.05); }
+}
+
+.ghost-glow {
+  animation: pulse 3s ease-in-out 1.8s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.12; }
+  50% { opacity: 0.28; }
+}
+
+.hero-name {
+  font-weight: 700;
+  font-size: 48px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.hero-name span { color: var(--accent); }
+
+.hero-rule {
+  width: 280px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent2), var(--accent), transparent);
+  margin: 10px auto;
+  opacity: 0.6;
+}
+
+.hero-tagline {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover { background: #00b8e0; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ghost);
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 13px 32px;
+  text-decoration: none;
+  border: 1px solid var(--dim);
+  transition: border-color 0.2s;
+}
+
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* SERVICES */
+.section {
+  width: 100%;
+  max-width: 1100px;
+  padding: 80px 40px;
+}
+
+.section-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-sub {
+  font-size: 14px;
+  color: var(--mid);
+  font-weight: 300;
+  margin-bottom: 48px;
+  max-width: 560px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.service-card {
+  background: #0b0e15;
+  border: 1px solid var(--dim);
+  padding: 32px;
+  transition: border-color 0.2s;
+}
+
+.service-card:hover { border-color: var(--accent); }
+
+.service-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.service-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.service-desc {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+
+.service-price {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 22px;
+  color: var(--ghost);
+}
+
+.service-price .price-note {
+  font-size: 11px;
+  color: var(--mid);
+  letter-spacing: 0.2em;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ABOUT */
+.about-section {
+  width: 100%;
+  border-top: 1px solid var(--dim);
+  background: #0b0e15;
+}
+
+.about-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.about-text p strong {
+  color: var(--ghost);
+  font-weight: 600;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.stat {
+  border: 1px solid var(--dim);
+  padding: 24px;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--mid);
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* FOOTER */
+footer {
+  width: 100%;
+  border-top: 1px solid var(--dim);
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+}
+
+.footer-copy {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.2em;
+}
+
+.footer-contact a {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: var(--mid);
+  letter-spacing: 0.2em;
+  text-decoration: none;
+}
+
+.footer-contact a:hover { color: var(--accent); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero { animation: fadeIn 0.8s ease both; }
+
+@media (max-width: 768px) {
+  .hero-name { font-size: 32px; }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .section { padding: 60px 24px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo-mark">Ghost Logic LLC</div>
-    <div class="badge">Under Construction</div>
-    <h1>Ghost <span>Logic</span></h1>
-    <p class="tagline">
-      AI-powered tools for real people.<br>
-      Something powerful is on the way.
-    </p>
-    <div class="divider"></div>
-    <p class="footer">
-      Veteran-Owned &bull; Hope Mills, NC &bull;
-      <a href="mailto:david@ghostlogic.us">david@ghostlogic.us</a>
-    </p>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="60" cy="58" rx="44" ry="46" fill="#00d4ff" opacity="0.08"/>
+      <path d="M22 58 C22 33 38 16 60 16 C82 16 98 33 98 58 L98 92 L87 82 L76 92 L65 82 L60 88 L55 82 L44 92 L33 82 L22 92 Z"
+        fill="#0d1220" stroke="#00d4ff" stroke-width="1.5"/>
+      <rect x="43" y="52" width="12" height="12" fill="#00d4ff" transform="rotate(45 49 58)" opacity="0.95"/>
+      <rect x="46" y="55" width="6" height="6" fill="#080a0f" transform="rotate(45 49 58)"/>
+      <rect x="65" y="52" width="12" height="12" fill="#00d4ff" transform="rotate(45 71 58)" opacity="0.95"/>
+      <rect x="68" y="55" width="6" height="6" fill="#080a0f" transform="rotate(45 71 58)"/>
+    </svg>
+    <span class="nav-name">GHOST <span>LOGIC</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="mailto:david@ghostlogic.us">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="logo-icon">
+    <svg class="ghost-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse class="ghost-glow" cx="60" cy="58" rx="44" ry="46" fill="url(#glowGrad)"/>
+      <clipPath id="ghostClip">
+        <path d="M22 58 C22 33 38 16 60 16 C82 16 98 33 98 58 L98 92 L87 82 L76 92 L65 82 L60 88 L55 82 L44 92 L33 82 L22 92 Z"/>
+      </clipPath>
+      <rect class="scan-rect" x="18" y="14" width="84" height="6" fill="url(#scanGrad)" clip-path="url(#ghostClip)"/>
+      <path d="M22 58 C22 33 38 16 60 16 C82 16 98 33 98 58 L98 92 L87 82 L76 92 L65 82 L60 88 L55 82 L44 92 L33 82 L22 92 Z"
+        fill="#0d1220" stroke="#00d4ff" stroke-width="1.5" stroke-linejoin="miter"/>
+      <path d="M36 58 C36 40 46 28 60 28 C74 28 84 40 84 58"
+        stroke="#0066ff" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.5"/>
+      <path class="trace"
+        d="M60 28 L60 36 M60 36 L48 36 L48 44 M60 36 L72 36 L72 44 M40 58 L32 58 L32 50 L40 50 M80 58 L88 58 L88 50 L80 50"
+        stroke="#00d4ff" stroke-width="0.8" stroke-linecap="square" opacity="0.5"/>
+      <g class="eye-left">
+        <rect x="43" y="52" width="12" height="12" fill="#00d4ff" transform="rotate(45 49 58)" opacity="0.9"/>
+        <rect x="46" y="55" width="6" height="6" fill="#080a0f" transform="rotate(45 49 58)"/>
+        <rect x="48" y="57" width="2" height="2" fill="#00d4ff" transform="rotate(45 49 58)" opacity="0.7"/>
+      </g>
+      <g class="eye-right">
+        <rect x="65" y="52" width="12" height="12" fill="#00d4ff" transform="rotate(45 71 58)" opacity="0.9"/>
+        <rect x="68" y="55" width="6" height="6" fill="#080a0f" transform="rotate(45 71 58)"/>
+        <rect x="70" y="57" width="2" height="2" fill="#00d4ff" transform="rotate(45 71 58)" opacity="0.7"/>
+      </g>
+      <line x1="18" y1="24" x2="26" y2="24" stroke="#0066ff" stroke-width="1" opacity="0.6"/>
+      <line x1="18" y1="24" x2="18" y2="32" stroke="#0066ff" stroke-width="1" opacity="0.6"/>
+      <line x1="102" y1="24" x2="94" y2="24" stroke="#0066ff" stroke-width="1" opacity="0.6"/>
+      <line x1="102" y1="24" x2="102" y2="32" stroke="#0066ff" stroke-width="1" opacity="0.6"/>
+      <line x1="18" y1="100" x2="26" y2="100" stroke="#0066ff" stroke-width="1" opacity="0.6"/>
+      <line x1="18" y1="100" x2="18" y2="92" stroke="#0066ff" stroke-width="1" opacity="0.6"/>
+      <line x1="102" y1="100" x2="94" y2="100" stroke="#0066ff" stroke-width="1" opacity="0.6"/>
+      <line x1="102" y1="100" x2="102" y2="92" stroke="#0066ff" stroke-width="1" opacity="0.6"/>
+      <defs>
+        <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#0066ff" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="scanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#00d4ff" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#00d4ff" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+    </svg>
   </div>
+
+  <div class="hero-name">GHOST <span>LOGIC</span></div>
+  <div class="hero-rule"></div>
+  <div class="hero-tagline">Build once &middot; Run forever</div>
+  <p class="hero-sub">AI-powered tools for small businesses and real people. We build the systems, run the analysis, and deliver results -- so you can focus on what you actually do.</p>
+
+  <div class="hero-cta">
+    <a href="mailto:david@ghostlogic.us?subject=SWOT Analysis Request" class="btn-primary">Get a SWOT Analysis &mdash; $150</a>
+    <a href="#services" class="btn-secondary">See All Services</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-label">// What We Do</div>
+  <h2 class="section-title">Services</h2>
+  <p class="section-sub">Done-for-you AI analysis and automation. You talk, we build, you run.</p>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-tag">// 01 &mdash; Analysis</div>
+      <div class="service-name">SWOT Analysis</div>
+      <p class="service-desc">A thorough, research-backed SWOT analysis for your business. We run a dynamic intake interview, research your industry and competitors, then deliver a professional report with confidence-scored findings, competitor intelligence, and quick wins you can act on this week.</p>
+      <div class="service-price">
+        $150
+        <span class="price-note">Starter &mdash; full report delivered within 48h</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-tag">// 02 &mdash; Automation</div>
+      <div class="service-name">AI Workflow Setup</div>
+      <p class="service-desc">We identify the repetitive tasks eating your time and build automated workflows that handle them. Customer follow-ups, lead tracking, reporting, scheduling -- once it's built, it runs without you.</p>
+      <div class="service-price">
+        Contact Us
+        <span class="price-note">Custom pricing &mdash; scoped per project</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-tag">// 03 &mdash; Intelligence</div>
+      <div class="service-name">Market Research</div>
+      <p class="service-desc">Real-time market intelligence on your industry, competitors, and customers. We pull from live data sources, not templates. Know what's actually happening in your market before your competition does.</p>
+      <div class="service-price">
+        Contact Us
+        <span class="price-note">Custom pricing &mdash; scoped per project</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-section" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <h2>Veteran-Owned.<br>Hope Mills, NC.</h2>
+      <p>Ghost Logic LLC builds AI systems that do real work for real people. Not demos. Not experiments. <strong>Production tools that run every day.</strong></p>
+      <p>We started because the tools that exist either cost too much, require a developer to set up, or produce generic output that nobody actually uses. We build the opposite -- affordable, specific, done-for-you.</p>
+      <p>Every deliverable we produce is backed by live research, not templates. Every recommendation is specific to your business, not copy-pasted from a framework.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat">
+        <div class="stat-num">48h</div>
+        <div class="stat-label">Report Delivery</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$150</div>
+        <div class="stat-label">SWOT Starting Price</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Research-Backed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Generic Templates</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">&copy; 2026 GHOST LOGIC LLC &mdash; HOPE MILLS, NC &mdash; VETERAN-OWNED</div>
+  <div class="footer-contact"><a href="mailto:david@ghostlogic.us">david@ghostlogic.us</a></div>
+</footer>
+
 </body>
 </html>
