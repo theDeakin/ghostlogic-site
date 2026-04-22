@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Scan Intake -- Ghost Logic LLC</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Chakra+Petch:wght@300;400;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080a0f;
+  --ghost: #e8edf5;
+  --accent: #00d4ff;
+  --accent2: #0066ff;
+  --dim: #2a3040;
+  --mid: #9aaec4;
+  --card: #0f1420;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ghost);
+  font-family: 'Chakra Petch', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 80px;
+}
+
+nav {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--dim);
+  margin-bottom: 48px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ghost);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+.nav-logo svg { width: 32px; height: 32px; }
+
+.tier-badge {
+  background: rgba(0,212,255,0.1);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.container { width: 100%; max-width: 620px; }
+
+.page-header { margin-bottom: 40px; }
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--mid);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.q-num {
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.form-group { margin-bottom: 28px; }
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ghost);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--dim);
+  border-radius: 8px;
+  color: var(--ghost);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus { border-color: var(--accent); }
+
+textarea { resize: vertical; min-height: 100px; }
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--dim);
+  margin: 36px 0;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 10px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+.submit-btn:hover { background: #00b8e0; }
+
+.note {
+  text-align: center;
+  color: var(--mid);
+  font-size: 0.78rem;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 3C12.268 3 6 9.268 6 17v16l4-3 4 3 4-3 4 3 4-3 4 3V17C30 9.268 23.732 3 20 3z" fill="#00d4ff" opacity="0.15"/>
+      <path d="M20 3C12.268 3 6 9.268 6 17v16l4-3 4 3 4-3 4 3 4-3 4 3V17C30 9.268 23.732 3 20 3z" stroke="#00d4ff" stroke-width="1.5" fill="none"/>
+      <circle cx="15" cy="16" r="2.5" fill="#00d4ff"/>
+      <circle cx="25" cy="16" r="2.5" fill="#00d4ff"/>
+    </svg>
+    Ghost Logic
+  </a>
+  <span class="tier-badge">Quick Scan &mdash; $49</span>
+</nav>
+
+<div class="container">
+  <div class="page-header">
+    <h1>Let's get to know your business.</h1>
+    <p class="subtitle">Five questions. Answer honestly and specifically. The more real you are, the sharper your SWOT comes back. No wrong answers here.</p>
+  </div>
+
+  <form action="https://formspree.io/f/theteam@ghostlogic.us" method="POST">
+    <input type="hidden" name="_subject" value="New Quick Scan Intake - Ghost Logic">
+    <input type="hidden" name="_next" value="https://ghostlogic.us/intake-done.html">
+    <input type="hidden" name="tier" value="Quick Scan ($49)">
+
+    <div class="form-group">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="First and last" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Where we'll send your report" required />
+    </div>
+
+    <div class="form-group">
+      <label for="biz">Business Name</label>
+      <input type="text" id="biz" name="business_name" placeholder="What's the name?" required />
+    </div>
+
+    <hr class="divider">
+
+    <div class="form-group">
+      <div class="q-num">// Question 01</div>
+      <label for="q1">What does your business do, and who is your ideal customer?</label>
+      <textarea id="q1" name="q1_what_you_do" placeholder="Be specific. Not 'everyone' — who actually buys from you?" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 02</div>
+      <label for="q2">Who is your #1 competitor? What do they do better than you right now?</label>
+      <textarea id="q2" name="q2_competitor" placeholder="Name them. It's okay." required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 03</div>
+      <label for="q3">What do customers say you do better than anyone else?</label>
+      <textarea id="q3" name="q3_strength" placeholder="Your real edge — not what you hope it is, what customers actually say." required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 04</div>
+      <label for="q4">What's the ONE thing you know needs fixing but hasn't been fixed yet?</label>
+      <textarea id="q4" name="q4_weakness" placeholder="The thing you keep putting off..." required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 05</div>
+      <label for="q5">What does winning look like for your business in the next 12 months?</label>
+      <textarea id="q5" name="q5_vision" placeholder="Revenue goal, milestone, feeling — whatever winning means to you." required></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit &rarr; Get My SWOT</button>
+    <p class="note">Your Quick Scan analysis will be delivered to your inbox within 24 hours.<br>Questions? Email theteam@ghostlogic.us</p>
+  </form>
+</div>
+
+</body>
+</html>

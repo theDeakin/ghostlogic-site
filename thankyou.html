@@ -112,6 +112,20 @@ h1 {
 
 .step-text strong { color: var(--accent); }
 
+.intake-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  transition: background 0.2s;
+  margin-bottom: 16px;
+}
+.intake-btn:hover { background: #00b8e0; }
 .home-link {
   color: var(--mid);
   text-decoration: none;
@@ -160,6 +174,8 @@ h1 {
   </div>
 </div>
 
+<a class="intake-btn" id="intake-link" href="/intake-quick.html">Fill Out Your Questionnaire &rarr;</a>
+<br><br>
 <a class="home-link" href="/">Back to Ghost Logic</a>
 
 <script>
@@ -178,6 +194,11 @@ if (order) {
   // Order summary
   var el = document.getElementById('order-summary');
   el.innerHTML = 'Order for <span>' + order.bizName + '</span> &bull; <span>' + order.tier + '</span> &bull; <span>$' + order.amount + '</span>';
+  // Point intake button to correct tier page
+  var intakeLink = document.getElementById('intake-link');
+  if (order.amount === 49) intakeLink.href = '/intake-quick.html';
+  else if (order.amount === 149) intakeLink.href = '/intake-deep.html';
+  else if (order.amount === 249) intakeLink.href = '/intake-full.html';
 }
 </script>
 </body>

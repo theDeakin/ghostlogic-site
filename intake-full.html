@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Intel Intake -- Ghost Logic LLC</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Chakra+Petch:wght@300;400;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080a0f;
+  --ghost: #e8edf5;
+  --accent: #00d4ff;
+  --accent2: #0066ff;
+  --dim: #2a3040;
+  --mid: #9aaec4;
+  --card: #0f1420;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ghost);
+  font-family: 'Chakra Petch', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 80px;
+}
+
+nav {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--dim);
+  margin-bottom: 48px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ghost);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+.nav-logo svg { width: 32px; height: 32px; }
+
+.tier-badge {
+  background: rgba(0,102,255,0.15);
+  border: 1px solid var(--accent2);
+  color: var(--accent2);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.container { width: 100%; max-width: 620px; }
+.page-header { margin-bottom: 40px; }
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--mid);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.section-header {
+  font-size: 0.75rem;
+  color: var(--accent2);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: 'Share Tech Mono', monospace;
+  border-bottom: 1px solid var(--dim);
+  padding-bottom: 8px;
+  margin: 36px 0 24px;
+}
+
+.q-num {
+  font-size: 0.75rem;
+  color: var(--accent2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.form-group { margin-bottom: 28px; }
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ghost);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--dim);
+  border-radius: 8px;
+  color: var(--ghost);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus { border-color: var(--accent2); }
+
+select option { background: var(--card); }
+textarea { resize: vertical; min-height: 100px; }
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--accent2);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+.submit-btn:hover { background: #0055dd; }
+
+.note {
+  text-align: center;
+  color: var(--mid);
+  font-size: 0.78rem;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 3C12.268 3 6 9.268 6 17v16l4-3 4 3 4-3 4 3 4-3 4 3V17C30 9.268 23.732 3 20 3z" fill="#00d4ff" opacity="0.15"/>
+      <path d="M20 3C12.268 3 6 9.268 6 17v16l4-3 4 3 4-3 4 3 4-3 4 3V17C30 9.268 23.732 3 20 3z" stroke="#00d4ff" stroke-width="1.5" fill="none"/>
+      <circle cx="15" cy="16" r="2.5" fill="#00d4ff"/>
+      <circle cx="25" cy="16" r="2.5" fill="#00d4ff"/>
+    </svg>
+    Ghost Logic
+  </a>
+  <span class="tier-badge">Full Intel &mdash; $249</span>
+</nav>
+
+<div class="container">
+  <div class="page-header">
+    <h1>Build your war room.</h1>
+    <p class="subtitle">Seventeen questions. This is the full picture — your business, your competitors, your market, and your 90-day path forward. What you put in determines what comes back. Give us everything.</p>
+  </div>
+
+  <form action="https://formspree.io/f/theteam@ghostlogic.us" method="POST">
+    <input type="hidden" name="_subject" value="New Full Intel Intake - Ghost Logic">
+    <input type="hidden" name="_next" value="https://ghostlogic.us/intake-done.html">
+    <input type="hidden" name="tier" value="Full Intel ($249)">
+
+    <div class="form-group">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="First and last" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Where we'll send your report" required />
+    </div>
+
+    <div class="form-group">
+      <label for="biz">Business Name</label>
+      <input type="text" id="biz" name="business_name" placeholder="What's the name?" required />
+    </div>
+
+    <div class="section-header">// Your Business - The Full Picture</div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 01</div>
+      <label for="q1">Describe your business in detail: what you do, who you serve, how you make money, and what makes you different.</label>
+      <textarea id="q1" name="q1_business_description" placeholder="Don't hold back. More detail = sharper analysis." required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 02</div>
+      <label for="q2">How long have you been operating? What's your approximate annual revenue and profit margin?</label>
+      <select id="q2" name="q2_revenue" required>
+        <option value="">Select a revenue range...</option>
+        <option>Pre-revenue / just starting</option>
+        <option>Under $50K</option>
+        <option>$50K - $150K</option>
+        <option>$150K - $500K</option>
+        <option>$500K+</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 03</div>
+      <label for="q3">How many employees or contractors do you have?</label>
+      <input type="text" id="q3" name="q3_team_size" placeholder="e.g. Just me, 2 part-time, 5 full-time" required />
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 04</div>
+      <label for="q4">What are your current sales and marketing channels?</label>
+      <textarea id="q4" name="q4_channels" placeholder="Walk-ins, social media, referrals, paid ads, email list, events?" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 05</div>
+      <label for="q5">What's your customer retention like? Do customers come back, or is it mostly one-time?</label>
+      <textarea id="q5" name="q5_retention" placeholder="Repeat buyers, subscriptions, loyalty, churn?" required></textarea>
+    </div>
+
+    <div class="section-header">// Your Competition</div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 06</div>
+      <label for="q6">List every competitor you're aware of — local, regional, and online. Note which ones you lose to most.</label>
+      <textarea id="q6" name="q6_competitors" placeholder="Name names. The more specific, the better our intel." required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 07</div>
+      <label for="q7">Honest assessment: where are you clearly winning vs. where are you getting beat?</label>
+      <textarea id="q7" name="q7_competitive_position" placeholder="No spin. This is your war room." required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 08</div>
+      <label for="q8">Have you lost a significant client or contract recently? What was the reason?</label>
+      <textarea id="q8" name="q8_lost_business" placeholder="If you know why, tell us. If you don't, say that." required></textarea>
+    </div>
+
+    <div class="section-header">// Internal - Strengths and Weaknesses</div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 09</div>
+      <label for="q9">What do your best customers say about you? Paste a review if you have one.</label>
+      <textarea id="q9" name="q9_customer_feedback" placeholder="Real words from real customers carry real weight." required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 10</div>
+      <label for="q10">What are the top 3 internal problems you're dealing with right now?</label>
+      <textarea id="q10" name="q10_internal_problems" placeholder="Operations, cash flow, team, systems, marketing, all of the above?" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 11</div>
+      <label for="q11">What tools, systems, or capabilities do you WISH you had?</label>
+      <textarea id="q11" name="q11_gaps" placeholder="Tech, automation, staff skills, processes?" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 12</div>
+      <label for="q12">Who on your team is a true asset? What (or who) is a drag?</label>
+      <textarea id="q12" name="q12_team" placeholder="No names needed if you prefer — just the role or dynamic." required></textarea>
+    </div>
+
+    <div class="section-header">// Market and Opportunity</div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 13</div>
+      <label for="q13">What trends are affecting your industry right now — good or bad?</label>
+      <textarea id="q13" name="q13_trends" placeholder="Economic shifts, tech changes, customer behavior, regulations?" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 14</div>
+      <label for="q14">Is there a customer segment, geography, or product line you haven't gone after but think you could?</label>
+      <textarea id="q14" name="q14_untapped" placeholder="Where's the white space you see but haven't moved on?" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 15</div>
+      <label for="q15">Are there any partnerships, contracts, or opportunities currently on the table?</label>
+      <textarea id="q15" name="q15_pipeline" placeholder="Conversations in progress, deals pending, introductions you haven't followed up on?" required></textarea>
+    </div>
+
+    <div class="section-header">// The 90-Day Vision</div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 16</div>
+      <label for="q16">If you could fix ONE thing in your business in the next 90 days, what would it be?</label>
+      <textarea id="q16" name="q16_priority" placeholder="One thing. The most important one." required></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="q-num">// Question 17</div>
+      <label for="q17">What does a "10 out of 10" outcome look like from this SWOT analysis?</label>
+      <textarea id="q17" name="q17_success_vision" placeholder="What would have to happen for you to say this was worth every penny?" required></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit &rarr; Get My Full Intel Report</button>
+    <p class="note">Your Full Intel report — executive summary, full SWOT matrix, competitor intelligence,<br>90-day action plan, and investor brief — delivered within 72 hours.<br>Your 90-day check-in is included. Questions? theteam@ghostlogic.us</p>
+  </form>
+</div>
+
+</body>
+</html>
